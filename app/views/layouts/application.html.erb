@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <%= link_to "Bookers", root_path %>
+     <a class="navbar-brand" href="/"><span>Bookers</span></a>
 
     <% if user_signed_in? %>
       <li>
@@ -40,6 +40,15 @@
       </li>
     <% end %>
     <%= yield %>
+    <footer>
+      <div class='container mt-5'>
+        <div class='row'>
+          <div class='mx-auto'>
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
 
