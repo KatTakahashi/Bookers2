@@ -1,2 +1,26 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class='col-md-8 offset-md-1'>
+<h2>Books</h2>
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <!-- link_to user-show, user id + profile-img -->
+          <td><%= link_to user_path(@user) do %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 63, 63, format: 'jpeg', fallback: "no_image.jpg", size: '63x63' %>
+              <% end %></td>
+          <td><%= link_to <a href="/users/39709"><img class="attachment user profile_image fallback" src="/assets/no-image-icon-d3f9e11cb2bb284b42e0810f94b03c50126f51f482ea43054b87c2b7ebaa01d5.jpg" /></a>        </td>
+          <!-- link_to book-show, book id + book-title -->
+          <td><a class="book_31341" href="/books/31341">yeah!!!</a></td>
+          <!-- book id + book-body -->
+          <td>yeah!!!</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
