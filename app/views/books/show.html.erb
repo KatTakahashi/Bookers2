@@ -3,12 +3,11 @@
   <table class='table'>
     <tr>
   <!-- ■user info -->
-
-      <td><a href="/users/39299">
-        <%= image_tag('no_image.jpg') %>
-        <!-- <img class="attachment user profile_image fallback" src="/assets/images/no_image.jpg" /><br> -->
-        ccccc</a>
-      </td>
+      <td><%= link_to user_path(@user) do %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40' %><br>
+            <%= @user.name %></td>
+          <% end %>
+      <!-- <img class="attachment user profile_image fallback" src="/assets/images/no_image.jpg" /><br> -->
   <!-- book title -->
       <td><%= link_to @book.title, book_path(@book.id) %></td>
   <!-- ■book opinion -->
@@ -16,7 +15,9 @@
   <!-- ■edit -->
       <td><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-sm btn-success edit_book_31060" %></td>
   <!-- ■destroy -->
-      <td><%= link_to "Destroy" , book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？" %> </td>
+      <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？" %> </td>
     </tr>
   </table>
 </div>
+
+
