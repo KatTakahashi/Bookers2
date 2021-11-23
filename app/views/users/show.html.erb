@@ -23,9 +23,7 @@
 
 <!-- L:User情報編集ボタン -->
       <div class='row'>
-        <% if @user.id == current_user.id %>
           <%= link_to "", edit_user_path(@user), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
-        <% end %>
       </div>
 
 <!--L:book 投稿 -->
