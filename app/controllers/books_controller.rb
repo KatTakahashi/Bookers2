@@ -8,14 +8,17 @@ class BooksController < ApplicationController
 
   def show
     @user = User.find(current_user.id)  #[投稿user用]@userにログイン中のユーザー情報を代入
-    @book = Book.find(params[:id])      #[book詳細用]@bookに特定のidの情報を代入
+    @books = Book.all                   #[book詳細用]@bookに特定のidの情報を代入
+    @book = Book.new
   end
 
   def create
-    @book = Book.new(book_params)    #[投稿用]@book にbookの投稿機能を代入
-    @book.user_id = current_user.id  #[投稿用]投稿者のidとbookのidを紐づけ
-    @book.save                       #[投稿用]投稿内容を保存
-    redirect_to book_path(@book.id)  #[投稿用]投稿後、bookのshowページへリダイレクト
+    @user = User.find(current_user.id)   #UserモデルのUser_id    ■[book] belongs to [user], [user] has many [books]
+    @book = Book.new(book_params)         #[投稿用]@book にbookの投稿機能を代入
+    @book.user_id = current_user.id       #[投稿用]投稿者のidとbookのidを紐づけ
+    @book.save                            #[投稿用]投稿内容を保存
+    redirect_to books_path                #[投稿用]投稿後、bookのshowページへリダイレクト
+
   end
 
   def edit
@@ -39,5 +42,6 @@ class BooksController < ApplicationController
   def book_params
    params.require(:book).permit(:title, :body)
   end
+
 
 end
