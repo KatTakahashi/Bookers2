@@ -17,12 +17,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
-    if @user.update(user_params)
-    redirect_to user_path(@user.id)
-    else
-      redirect_to book_path(1)
-    end
+    @user.update(user_params)
+    redirect_to user_path(@user.id), notice: 'You have updated user successfully.'
   end
 
   def destroy
