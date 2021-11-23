@@ -1,21 +1,28 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @user = User.find(current_user.id)
+    @user = User.find(current_user.id)  #[User Info用]@user にログイン中のユーザー情報を代入
+    @books = Book.all                   #[一覧用]@books に投稿済みbookの全てのデータを代入
+    @book = Book.new                    #[投稿用]@book にbookの投稿機能を代入
   end
 
   def show
     @user = User.find(params[:id])
+    @books = @user.books
   end
 
   def edit
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
+
+    if @user.update(user_params)
     redirect_to user_path(@user.id)
+    else
+      redirect_to book_path(1)
+    end
   end
 
   def destroy
@@ -24,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction,  :profile_image)
+    params.require(:user).permit(:name, :introduction,:profile_image)
   end
 
 end
