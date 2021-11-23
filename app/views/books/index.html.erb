@@ -1,32 +1,38 @@
 <p id="notice"></p>
 
+<!-- バリデーションのメッセージ -->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> errors prohibited this obj from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
       <table class='table'>
 <!-- L:User Info -->
-  <!-- ■ユーザーid反映 -->
         <!-- attachment_image_tag 保存先インスタンス名, :保存先カラム名, :fill, 幅, 高さ, format:'拡張子', fallback:"代替画像"  -->
         <tr>
           <%= attachment_image_tag @user, :profile_image, :fill, 63, 63, format: 'jpeg', fallback: "no_image.jpg", size: '63x63' %>
         </tr>
         <tr>
       	  <th>name</th>
-  <!-- userモデルからユーザーnameを代入 -->
       	  <th><%= @user.name %></th>
         </tr>
         <tr>
       	  <th>introduction</th>
-  <!-- uerモデルからユーザーintroductionを代入 -->
       	  <th><%= @user.introduction %></th>
         </tr>
       </table>
 
 <!-- L:User情報編集ボタン -->
       <div class='row'>
-  <!-- ■link_to へ書き換え -->
-  <!-- ■User id反映  -->
         <% if @user.id == current_user.id %>
           <%= link_to "", edit_user_path(@user), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
         <% end %>
