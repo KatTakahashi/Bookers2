@@ -10,6 +10,7 @@
   </head>
 
   <body>
+  <!-- ヘッダー -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -35,7 +36,16 @@
         </div>
       </nav>
     </header>
+
+  <!-- フラッシュメッセージ -->
+  <% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+
+
     <%= yield %>
+
+  <!-- フッター -->
     <footer>
       <div class='container mt-5'>
         <div class='row'>

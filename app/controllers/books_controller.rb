@@ -17,7 +17,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)         #[投稿用]@book にbookの投稿機能を代入
     @book.user_id = current_user.id       #[投稿用]投稿者のidとbookのidを紐づけ
     @book.save                            #[投稿用]投稿内容を保存
-    redirect_to books_path                #[投稿用]投稿後、bookのshowページへリダイレクト
+    redirect_to books_path, notice: 'You have created book successfully.'                #[投稿用]投稿後、bookのshowページへリダイレクト
 
   end
 
@@ -28,7 +28,7 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    redirect_to book_path(book)
+    redirect_to book_path(book), notice: 'You have updated book successfully.'
   end
 
   def destroy
